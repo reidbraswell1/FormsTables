@@ -18,6 +18,13 @@
             <input type="text" id="lastName" required placeholder="Last Name">
             <label for="email">Email Address</label>
             <input type="email" id="email" required placeholder="Email">
+            <label>Programming Experience:</label>
+            <label for="beginner">Beginner</label>
+            <input type="radio" id="beginner" name="beginner">
+            <label for="intermediate">Intermediate</label>
+            <input type="radio" id="intermediate" name="intermediate">
+            <label for="expert">Expert</label>
+            <input type="radio" id="expert" name="expert">
             <br />
             <input type="submit" value="Submit" onclick="validate()"/>
             <input type="reset">
@@ -55,6 +62,14 @@
             document.getElementById("firstNameTable").innerText=firstName;
             document.getElementById("lastNameTable").innerText=lastName;
             document.getElementById("emailTable").innerText=email;
+            let table = document.getElementById("results");
+            let row = table.insertRow();
+            let cell1 = row.insertCell();
+            let cell2 = row.insertCell();
+            let cell3 = row.insertCell();
+            cell1.innerText = firstName;
+            cell2.innerText = lastName;
+            cell3.innerText = email;
             reset();
         }
         function reset() {
