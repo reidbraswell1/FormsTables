@@ -16,15 +16,16 @@
             <input type="text" id="firstName" required placeholder="First Name">
             <label for="lastName">Last Name:</label>
             <input type="text" id="lastName" required placeholder="Last Name">
-            <label for="email">Email Address</label>
+            <label for="email">Email Address:</label>
             <input type="email" id="email" required placeholder="Email">
             <label>Programming Experience:</label>
+            <br/>
             <label for="beginner">Beginner</label>
-            <input type="radio" id="beginner" name="beginner">
+            <input type="radio" id="beginner" name="programmingExperience" value="Beginner">
             <label for="intermediate">Intermediate</label>
-            <input type="radio" id="intermediate" name="intermediate">
+            <input type="radio" id="intermediate" name="programmingExperience" value="Intermediate">
             <label for="expert">Expert</label>
-            <input type="radio" id="expert" name="expert">
+            <input type="radio" id="expert" name="programmingExperience" value="Expert">
             <br />
             <input type="submit" value="Submit" onclick="validate()"/>
             <input type="reset">
@@ -34,23 +35,12 @@
     <div>
         <table id="results">
             <thead>
-                <tr>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
+                    <th>Programming Experience</th>
             </thead>
             <tbody>
-                <!-- Set a row of dummy data so that the even line will display a different background color -->
-                <tr>
-                    <td>First Name</td>
-                    <td>Last Name</td>
-                    <td>Email</td>
-                </tr>
-                <tr>
-                    <td id="firstNameTable"></td>
-                    <td id="lastNameTable"></td>
-                    <td id="emailTable"></td>
-                </tr>
             </tbody>
         </table>
     </div>
@@ -59,17 +49,33 @@
             let firstName = document.getElementById("firstName").value;
             let lastName = document.getElementById("lastName").value;
             let email = document.getElementById("email").value;
-            document.getElementById("firstNameTable").innerText=firstName;
-            document.getElementById("lastNameTable").innerText=lastName;
-            document.getElementById("emailTable").innerText=email;
+            let beginner = document.getElementById("beginner").value;
+            let intermediate = document.getElementById("intermediate").value;
+            let expert = document.getElementById("expert").value;
+            let programmingExperience;
+            alert(intermediate);
+            alert(beginner);
+            if(beginner == "") {
+                if(intermediate == "") {
+                    programmingExperience = expert;
+                }
+                else {
+                    programmingExperience = intermediate;
+                }
+            }
+            else {
+                programmingExperience = beginner;                
+            }
             let table = document.getElementById("results");
             let row = table.insertRow();
             let cell1 = row.insertCell();
             let cell2 = row.insertCell();
             let cell3 = row.insertCell();
+            let cell4 = row.insertCell();
             cell1.innerText = firstName;
             cell2.innerText = lastName;
             cell3.innerText = email;
+            cell4.innerText = programmingExperience;
             reset();
         }
         function reset() {
