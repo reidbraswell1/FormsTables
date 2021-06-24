@@ -11,7 +11,7 @@
 <body>
     <h1>Forms and Tables Example</h1>
     <div class="form">
-        <form method="GET" action="/" >
+        <form method="POST" action="javascript:validate(this);" >
             <label for="firstName">First Name:</label>
             <input type="text" id="firstName" required placeholder="First Name">
             <label for="lastName">Last Name:</label>
@@ -21,13 +21,16 @@
             <label>Programming Experience:</label>
             <br/>
             <label for="beginner">Beginner</label>
-            <input type="radio" id="beginner" name="programmingExperience" value="Beginner">
+            <input type="radio" id="beginner" name="programmingExperience" required value="Beginner">
             <label for="intermediate">Intermediate</label>
-            <input type="radio" id="intermediate" name="programmingExperience" value="Intermediate">
+            <input type="radio" id="intermediate" name="programmingExperience" required value="Intermediate">
             <label for="expert">Expert</label>
-            <input type="radio" id="expert" name="programmingExperience" value="Expert">
+            <input type="radio" id="expert" name="programmingExperience" required value="Expert">
+            <br/>
+            <label for="desiredCareer">Desired Career:</label>
+            <input type="text" id="desiredCareer" name="desiredCareer" required placeholder="Desired Career">
             <br />
-            <input type="submit" value="Submit" onclick="validate()"/>
+            <input type="submit" value="Submit" onsubmit="return true"/>
             <input type="reset">
         </form>
     </div>
@@ -39,49 +42,63 @@
                     <th>Last Name</th>
                     <th>Email</th>
                     <th>Programming Experience</th>
+                    <th>Desired Career</th>
             </thead>
             <tbody>
             </tbody>
         </table>
     </div>
     <script>
-        function validate() {
-            let firstName = document.getElementById("firstName").value;
-            let lastName = document.getElementById("lastName").value;
-            let email = document.getElementById("email").value;
-            let beginner = document.getElementById("beginner").value;
-            let intermediate = document.getElementById("intermediate").value;
-            let expert = document.getElementById("expert").value;
+        function validate(a) {
+            alert(this.beginner.checked);
+            /* Get the form objects */
+            
+            let firstName = document.getElementById("firstName");
+            let lastName = document.getElementById("lastName");
+            let email = document.getElementById("email");
+            let beginner = document.getElementById("beginner");
+            let intermediate = document.getElementById("intermediate");
+            let expert = document.getElementById("expert");
+            let desiredCareer = document.getElementById("desiredCareer");
             let programmingExperience;
-            alert(intermediate);
-            alert(beginner);
-            if(beginner == "") {
-                if(intermediate == "") {
-                    programmingExperience = expert;
-                }
-                else {
-                    programmingExperience = intermediate;
-                }
+            
+
+            /* Check which radio button is checked */
+            if(beginner.checked) {
+                programmingExperience = beginner.value;
             }
-            else {
-                programmingExperience = beginner;                
+            if(intermediate.checked) {
+                programmingExperience = intermediate.value;
             }
+            if(expert.checked) {
+                programmingExperience = expert.value;
+            }
+
+            /* Append to the table */
             let table = document.getElementById("results");
             let row = table.insertRow();
             let cell1 = row.insertCell();
             let cell2 = row.insertCell();
             let cell3 = row.insertCell();
             let cell4 = row.insertCell();
-            cell1.innerText = firstName;
-            cell2.innerText = lastName;
-            cell3.innerText = email;
+            let cell5 = row.insertCell();
+            cell1.innerText = this.firstName.value;
+            cell2.innerText = this.lastName.value;
+            cell3.innerText = this.email.value;
             cell4.innerText = programmingExperience;
-            reset();
+            cell5.innerText = this.desiredCareer.value;
+
+            /* Reset the form values */
+            reset(firstName, lastName, email, beginner, intermediate, expert, desiredCareer);
         }
         function reset() {
-            document.getElementById("firstName").value="";   
-            document.getElementById("lastName").value="";   
-            document.getElementById("email").value="";   
+            firstName.value = "";   
+            lastName.value = "";   
+            email.value = "";  
+            beginner.checked = false; 
+            intermediate.checked = false;
+            expert.checked = false;
+            desiredCareer.value = "";
         }
     </script>
 </body>
