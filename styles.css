@@ -22,8 +22,8 @@
   }
   
   /* Style the Submit button green */
-  input[type=submit] {
-    width: 100%;
+  input[type=submit], input[type=reset] {
+    width: 45%;
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
@@ -32,3 +32,35 @@
     border-radius: 4px;
     cursor: pointer;
   }
+
+  /* Style the table */
+  #results {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  /* Set border color and type for the table data and header */
+  #results td, #results th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  /* Set the even numbered rows to a different color for contrast */
+  #results tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  /* On hover over a row change the background color */
+  #results tr:hover {
+    background-color: #ddd;
+  }
+
+  /* Set the background color and text color of the heading */
+  #results th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04aa6d;
+  color: white;
+}
