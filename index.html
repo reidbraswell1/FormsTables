@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Forms and Tables</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div>
-        <form method="POST" action="new.cgi" onsubmit="validate()">
+    <div class="form">
+        <form method="GET" action="/" >
             <label for="firstName">First Name:</label>
             </br>
             <input type="text" id="firstName" required placeholder="First Name">
@@ -20,12 +21,13 @@
             <br />
             <label for="email">Email Address</label>
             <br />
-            <input type="email" id="email" required placeholder="email">
+            <input type="email" id="Email" required placeholder="email">
             <br />
             <br />
-            <input type=" submit" value="Submit" onclick="validate()" />
+            <input type="submit" value="Submit" onsubmit="validate()"/>
         </form>
     </div>
+    <hr/>
     <div>
         <table>
             <thead>
